@@ -51,3 +51,15 @@ class CategoryTestClass(TestCase):
     def test_instance(self):
         """Testing instance"""
         self.assertTrue(isinstance(self.category, Category))
+
+    def test_save_method(self):
+        """Testing Update Method"""
+        self.category.save_category()
+        categories = Category.objects.all()
+        self.assertTrue(len(categories) > 0)
+
+    def test_update_method(self):
+        """Testing Update Method"""
+        self.category.update_category(name="fashion")
+        category = Category.objects.all()
+        self.assertTrue(len(category) > 0)
