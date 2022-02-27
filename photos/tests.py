@@ -78,3 +78,23 @@ class CategoryTestClass(TestCase):
     def tearDown(self):
         """tearDown method"""
         Category.objects.all().delete()
+
+class ImageTestClass(TestCase):
+
+    def setUp(self):
+        """setUp Method"""
+        self.place = Location(location_name='Nairobi')
+        self.place.save_location()
+
+        self.category = Category(category_name='news')
+        self.category.save_category()
+
+        self.image = Image(image_name='lorem', image_description='Another Lorem description',
+                           image='lorem.png', location=self.place, category=self.category,
+                           updated_at=None, created_at=None
+                           )
+        self.image.save_image()
+
+    def test_instance(self):
+        """Testing instance"""
+        self.assertTrue(isinstance(self.image, Image))
