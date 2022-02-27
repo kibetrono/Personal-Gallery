@@ -1,0 +1,22 @@
+nav{
+font-size:18px;
+height:70px;
+}
+button{
+border:unset
+}
+
+.main{
+float:left !important;
+width:24%;
+height:40%;
+margin:5px;
+background-color:#ddd;
+margin-left:12px
+}
+.my_image{
+width:100%;
+height:100%;
+clear:both;
+
+}
