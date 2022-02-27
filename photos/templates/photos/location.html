@@ -32,7 +32,23 @@
         </div>
         </h5>
       </div>
-                 
+                    <!-------modal body----------->
+
+      <div class="modal-body">
+        <div class=" show_image">
+             <img style="width:100%" src="{{image.image.url}}" class="img-responsive" alt="Image">
+        </div>
+        <div class="image_name">
+            <h2>Image Name: {{image.image_name}}</h2>
+        </div>
+        <div class="category">
+            <h4>Category: {{image.category}}</h4>
+        </div>
+        <div class="show_description">
+            <p>Description: {{image.image_description}}</p>
+        </div>
+      </div>
+            <!-------/modal body----------->
         <div class="modal-footer">
      <input type="submit" onClick="imageLink(this.id)"  id="{{image.image.url}}" class="btn btn-success" value="Copy">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
