@@ -1,0 +1,60 @@
+{% extends 'base.html'%}
+
+{%block content%}
+
+<h1 class="mt-2 text-center fw-bold">Location: {{location}}</h1>
+<hr>
+<!--content-->
+<div class="container-fluid">
+    {%for image in images%}
+            <!------row----->
+    <div class="row main">
+    <!--start of image only-->
+
+        <a href="" data-bs-toggle="modal" data-bs-target='#showDetails{{image.id}}' >
+                <img  src="{{image.image.url}}" class="img-responsive" alt="Image" style="width:100%;height:100%">
+
+        </a>
+        </div>
+
+        <!--end of image only-->
+
+    <!--The main modal-->
+<!--tabindex="-1" aria-labelledby="modal-title" aria-hidden="true"-->
+
+    <div class="modal fade" id="showDetails{{image.id}}" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center text-warning h1" >
+        <div class="location">
+            <h4>Location: {{image.location}}</h4>
+        </div>
+        </h5>
+      </div>
+                 
+        <div class="modal-footer">
+     <input type="submit" onClick="imageLink(this.id)"  id="{{image.image.url}}" class="btn btn-success" value="Copy">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!--/The main modal-->
+
+        <!------------/row-->
+       <script>
+
+      function imageLink(my_url)
+  {
+      navigator.clipboard.writeText(my_url);
+      alert("Link to the image is: " + my_url + ".");
+  }
+    </script>
+    {%endfor%}
+</div>
+<!--/content-->
+
+{%endblock%}
