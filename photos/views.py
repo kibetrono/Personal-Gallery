@@ -43,3 +43,12 @@ def location(request, image_location):
     return render(request, 'photos/location.html', context)
 
 
+def category(request, category_id):
+    title = "Gallery Category"
+    try:
+        category = Category.objects.get(id=category_id)
+    except Category.DoesNotExist:
+        raise Http404()
+    context = {'category': category, 'title': title}
+    return render(request, "photos/category.html", context)
+
