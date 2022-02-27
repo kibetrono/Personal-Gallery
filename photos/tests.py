@@ -63,3 +63,18 @@ class CategoryTestClass(TestCase):
         self.category.update_category(name="fashion")
         category = Category.objects.all()
         self.assertTrue(len(category) > 0)
+
+    def test_delete_method(self):
+        """Testing delete Method"""
+        self.category.delete_category()
+        category = Category.objects.all()
+        self.assertTrue(len(category) < 1)
+
+    def test_category_return_str(self):
+        """Testing return str Method"""
+        cat = Category.objects.get(category_name="news")
+        self.assertEqual(str(cat), "news")
+
+    def tearDown(self):
+        """tearDown method"""
+        Category.objects.all().delete()
