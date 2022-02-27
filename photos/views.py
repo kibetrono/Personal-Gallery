@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Image, Location, Category
 from django.contrib import messages
 from django.http import Http404
+from .forms import PhotoForm
+
 
 
 # Create your views here.
@@ -11,8 +13,24 @@ def home(request):
     location = Location.objects.all()
     category = Image.objects.all()
     title = "Home - Page"
-    context = {'title': title, 'images': image[:8], 'locations': location, 'categories': category}
+    context = {'title': title, 'images': image[:12], 'locations': location, 'categories': category}
     return render(request, 'photos/home.html', context)
+
+def registerPhoto(request):
+    location = Location.objects.all()
+
+    form = PhotoForm()
+    if request.method == "POST":
+        form_results = PhotoForm(request.POST,request.FILES)
+        print(form_results)
+        if form_results.is_valid():
+
+            form_results.save()
+            return redirect('home')
+
+    context = {"form": form,'locations': location}
+    return render(request, 'photos/photo.html', context)
+
 
 
 def search(request):
