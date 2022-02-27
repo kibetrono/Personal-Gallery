@@ -1,0 +1,78 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if results%}
+      <h2 class="text-center">Found {{ results|length }} of searched term {{message}}</h2>
+    {% else %}
+      <h2 class="text-center"> Found 0 results for the search term {{message}}</h2>
+    {% endif %}
+    <hr>
+  </div>
+
+  <div class="row">
+
+  {% if results %}
+    {% for image in results %}
+      <div class="col-sm-6 col-md-3">
+        <div class="card">
+          <h3>{{image.image_name}}</h3>
+            <a href="" data-bs-toggle="modal" data-bs-target='#showDetails{{image.id}}' >
+                    <img style="width:100%" src="{{image.image.url}}" class="img-responsive" alt="Image">
+
+        </a>
+
+        </div>
+
+      </div>
+<!-----------modal-------------->
+   <div class="modal fade" id="showDetails{{image.id}}" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center text-warning h1" >Learn More from this image</h5>
+      </div>
+                    <!-------modal body----------->
+
+      <div class="modal-body">
+        <div class="show_image">
+             <img style="width:100%" src="{{image.image.url}}" class="img-responsive" alt="Image">
+        </div>
+        <div class="image_name">
+            <h2>Image Name: {{image.image_name}}</h2>
+        </div>
+        <div class="location">
+            <h4>Location: {{image.location}}</h4>
+        </div>
+        <div class="category">
+            <h4>Category: {{image.category}}</h4>
+        </div>
+        <div class="show_description">
+            <p>Description: {{image.image_description}}</p>
+        </div>
+      </div>
+            <!-------/modal body----------->
+        <div class="modal-footer">
+     <input type="submit" onClick="imageLink(this.id)"  id="{{image.image.url}}" class="btn btn-success" value="Copy">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+<!-----------/modal-------------->
+   <script>
+
+      function imageLink(my_url)
+  {
+      navigator.clipboard.writeText(my_url);
+      alert("Link to the image is: " + my_url + ".");
+  }
+    </script>
+    {% endfor %}
+  {% endif %}
+  </div>
+</div>
+{% endblock %}
