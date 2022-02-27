@@ -40,3 +40,14 @@ class LocationTestClass(TestCase):
     def tearDown(self):
         """tearDown method"""
         Location.objects.all().delete()
+
+class CategoryTestClass(TestCase):
+
+    def setUp(self):
+        """Creating a new category and saving it"""
+        self.category = Category(category_name='news')
+        self.category.save_category()
+
+    def test_instance(self):
+        """Testing instance"""
+        self.assertTrue(isinstance(self.category, Category))
