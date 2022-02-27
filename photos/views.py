@@ -33,3 +33,13 @@ def search(request):
         message = "You haven't searched for any term"
         return render(request, 'photos/search.html', {"message": message})
 
+
+def location(request, image_location):
+    all_locations = Location.objects.all()
+    specific_location = Location.get_location_id(image_location)
+    images = Image.filter_by_location(image_location)
+    title = f'{specific_location} Photos'
+    context = {'title': title, 'images': images, 'locations': all_locations, 'location': specific_location}
+    return render(request, 'photos/location.html', context)
+
+
