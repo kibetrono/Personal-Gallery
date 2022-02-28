@@ -37,7 +37,7 @@ A django applications that enables users to save their photos and depending on t
 
 ## Live Link
 
-* [Click Here]() to view KibRono's Gallery
+* [Click Here](https://kibronogallery.herokuapp.com/) to view KibRono's Gallery
 
 
 ## Contact Information
